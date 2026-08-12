@@ -1,0 +1,230 @@
+.auth-shell {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4);
+  overflow: hidden;
+  background: var(--graphite-950);
+}
+
+/* Capa 1: la foto, desaturada y oscurecida para que combine con la paleta */
+.auth-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('/assets/auth-bg.jpg') center / cover no-repeat;
+  filter: grayscale(0.55) brightness(0.55) contrast(1.05);
+  z-index: 0;
+}
+
+/* Capa 2: tinte azul/grafito de marca + retícula, por encima de la foto */
+.auth-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, var(--grid-line) 0 1px, transparent 1px 56px),
+    repeating-linear-gradient(90deg, var(--grid-line) 0 1px, transparent 1px 56px),
+    linear-gradient(160deg, rgba(44, 74, 115, 0.5), rgba(18, 21, 26, 0.85));
+  z-index: 1;
+}
+
+@media (max-width: 860px) {
+  .auth-side {
+    display: none;
+  }
+}
+
+/* Texto de marca flotando en la esquina, sobre la foto */
+.auth-side {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  z-index: 2;
+  max-width: 380px;
+}
+
+.auth-side-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--safety-500);
+}
+
+.auth-side-title {
+  font-size: clamp(1.7rem, 3vw, 2.4rem);
+  line-height: 1.1;
+  color: var(--paper-100);
+  margin-top: var(--space-2);
+}
+
+.auth-icon-row {
+  position: absolute;
+  bottom: var(--space-4);
+  left: var(--space-4);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+.auth-icon-row svg {
+  width: 22px;
+  height: 22px;
+  color: var(--safety-500);
+  opacity: 0.9;
+}
+
+/* La tarjeta del formulario, flotando como una pestaña sobre todo lo anterior */
+.auth-main {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--space-4);  
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: rgba(25, 29, 36, 0.74);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(143, 180, 222, 0.22);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.55);
+}
+
+.auth-card-title {
+  font-size: 1.6rem;
+  margin-bottom: var(--space-1);
+}
+
+.auth-card-subtitle {
+  color: var(--paper-300);
+  font-size: 0.95rem;
+  margin: 0 0 var(--space-4) 0;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper-300);
+}
+
+.field-input {
+  background: var(--graphite-800);
+  border: 1px solid var(--grid-line);
+  border-radius: var(--radius-sm);
+  padding: 0.8rem 0.9rem;
+  color: var(--paper-100);
+  font-size: 0.95rem;
+  font-family: var(--font-body);
+}
+
+.field-input:focus {
+  border-color: var(--safety-500);
+  outline: none;
+}
+
+.field-input-error {
+  border-color: var(--alert-500);
+}
+
+.field-error {
+  margin: 0;
+  color: var(--alert-500);
+  font-size: 0.8rem;
+}
+
+.field-password-wrap {
+  position: relative;
+  display: flex;
+}
+
+.field-password-wrap .field-input {
+  flex: 1;
+  padding-right: 5rem;
+}
+
+.field-toggle-visibility {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--blueprint-300);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.field-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--paper-300);
+}
+
+.auth-link {
+  color: var(--safety-500);
+  text-decoration: none;
+}
+.auth-link:hover {
+  text-decoration: underline;
+}
+
+.auth-footer-note {
+  margin-top: var(--space-3);
+  font-size: 0.85rem;
+  color: var(--paper-300);
+  text-align: center;
+}
+
+.form-banner {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.7rem 0.9rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid;
+}
+
+.form-banner-error {
+  background: rgba(224, 86, 61, 0.1);
+  border-color: var(--alert-500);
+  color: #ffb7a8;
+}
+
+.form-banner-success {
+  background: rgba(76, 123, 184, 0.12);
+  border-color: var(--blueprint-500);
+  color: var(--blueprint-300);
+}
